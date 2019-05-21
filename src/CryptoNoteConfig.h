@@ -130,21 +130,21 @@ const uint8_t  BLOCK_MAJOR_VERSION_3                         =  3;
 const uint8_t  BLOCK_MINOR_VERSION_0                         =  0;
 const uint8_t  BLOCK_MINOR_VERSION_1                         =  1;
 
-const size_t   BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT        =  50000;  //by default, blocks ids count in synchronizing
-const size_t   BLOCKS_SYNCHRONIZING_DEFAULT_COUNT            =  450;    //by default, blocks count in blocks downloading
-const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  5000;
+const size_t   BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT        =  500000;  //by default, blocks ids count in synchronizing
+const size_t   BLOCKS_SYNCHRONIZING_DEFAULT_COUNT            =  4500;    //by default, blocks count in blocks downloading
+const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  50000;
 
 const int      P2P_DEFAULT_PORT                              =  55491;
 const int      RPC_DEFAULT_PORT                              =  55490;
 
 const size_t   P2P_LOCAL_WHITE_PEERLIST_LIMIT                =  1000;
-const size_t   P2P_LOCAL_GRAY_PEERLIST_LIMIT                 =  5000;
+const size_t   P2P_LOCAL_GRAY_PEERLIST_LIMIT                 =  50;
 
-const size_t   P2P_CONNECTION_MAX_WRITE_BUFFER_SIZE          = 128 * 1024 * 1024; // 128 MB
-const uint32_t P2P_DEFAULT_CONNECTIONS_COUNT                 = 16;
+const size_t   P2P_CONNECTION_MAX_WRITE_BUFFER_SIZE          = 256 * 1024 * 1024; // 256 MB
+const uint32_t P2P_DEFAULT_CONNECTIONS_COUNT                 = 32;
 const size_t   P2P_DEFAULT_WHITELIST_CONNECTIONS_PERCENT     = 70;
 const uint32_t P2P_DEFAULT_HANDSHAKE_INTERVAL                = 60;            // seconds
-const uint32_t P2P_DEFAULT_PACKET_MAX_SIZE                   = 100000000;      // 100000000 bytes maximum packet size
+const uint32_t P2P_DEFAULT_PACKET_MAX_SIZE                   = 1000000000;      // 100000000 bytes maximum packet size
 const uint32_t P2P_DEFAULT_PEERS_IN_HANDSHAKE                = 450;
 const uint32_t P2P_DEFAULT_CONNECTION_TIMEOUT                = 5000;          // 5 seconds
 const uint32_t P2P_DEFAULT_PING_CONNECTION_TIMEOUT           = 2000;          // 2 seconds
@@ -158,7 +158,7 @@ const uint32_t  P2P_IDLE_CONNECTION_KILL_INTERVAL               = (5*60); //5 mi
 
 const char     P2P_STAT_TRUSTED_PUB_KEY[]                    = "";
 
-const char* const SEED_NODES[] = { "213.79.58.53:55491", "167.99.177.34:55491", "45.63.39.149:55491", "207.148.66.212:55491", "35.178.75.39:55491", "52.78.149.215:55491", "107.172.41.103:55491", "45.32.104.151:55491", "45.76.106.163:55491", "213.191.229.114:55491" };
+const char* const SEED_NODES[] = { "68.183.124.243:55491", "165.22.243.173:55491" };
 
 
 struct CheckpointData {
@@ -220,7 +220,36 @@ const std::initializer_list<CheckpointData> CHECKPOINTS = {
   {169500, "efc07bfca901fd6b157fdd0fdbede38ac572041885919cb8eb6ad7e717858adf"},
   {170000, "18babfd40798ec0af838f88537df34d006e020136b827ee368839c1036d8b526"},
   {170086, "a437d984a50148b72106ea7e17dfbe2a9bef40abf92d5330bb69df46a6b5b5c5"},
-  {170460, "fa3ea5eb3f9d40223ed2029fcbd3b55984b062eee94e0603d1dccc79c2ada96a"}
+  {170460, "fa3ea5eb3f9d40223ed2029fcbd3b55984b062eee94e0603d1dccc79c2ada96a"},
+  {170901, "8acdd7f9cf088eabf8fab461bbd6ff41539cdc37ae6781b95edec705077b6cec"},
+  {171400, "65aa476aea075937e64e104e1c3bccba3151bfd88bf6be68e847831668459903"},
+  {172000, "c5107021ce92df358d0d23aa2b09708d688d22b4777e1131b37552fd2b41ef2e"},
+  {172500, "7b18a3347f7603ed64d4c4d738c91e78bb283f731e319e5e6c7e3c8b88cb4965"},
+  {173000, "957ed92b4d9b3a618c9cfeeae6308bd5826005876a4464576d2e8b880a0b0303"},
+  {173500, "cf6d400fe72e10114b6e3c1124d7c2fea70a72c918d178afb21e9341ff5a820d"},
+  {174000, "56aefd67c653f6aeb41f8e6347e37ee82dd2f8e85cae1458a4ced402fdb05605"},
+  {174500, "197e2c6b03bd15454a0a61a9aa453a4456770a1f27a4098b10f4dcbb1af0b825"},
+  {175000, "4e89f860e65b9b1a0237b0c2009bf6cadd55d9364b40dc7e42f617d3a24e2d91"},
+  {176000, "e7817102c712cb494c25193c24dedbf7cf29a87b86a17f624913d5ae8be7795c"},
+  {178000, "82942778cf9c0e13d34ce1b71ed6c8918c8d82f4049c47643d89c23d978563ba"},
+  {180000, "aeded1d9f6859e9c01dca7da7537a9446d7e0e26af33658c2b32060f38f19054"},
+  {182000, "1d39a0a46f82089ef08c0a7060c5a7cf0535eed4faa8d57ec830f8edb9459ea8"},
+  {186000, "2e0dc4e83c63070ec77ad8fc1095522f4161fdb5a154893b76b1403bc0f908fa"},
+  {189000, "af09d6f90617b7b5bd6b94a925ce2498654cded79efb3698de7bb1ad5c37273b"},
+  {195000, "b9874b968fffbe8fcaf63e5f766a4853fc7bb47eda9cf5a9c387bf1d80eabf61"},
+  {200000, "4b371cd2a81bbf4a313910c14e0a92c16526b0058adc10a0739c1ad5e237fa22"},
+  {210000, "cba14a23edd6f688a086dc3d06b18704bb7435aef9b0bdd76339d68b13066b4c"},
+  {220000, "763d0393874a9a977dae81eca940ef6ef3eb08232696826def49ad4fbaa96820"},
+  {230000, "da5b4c94206a5968da765ea1d550caa215af5c34cecb3dd6513f5ee352c3866d"},
+  {240000, "6a95f2251caf48e8d56d1037d2710e13def3d31b66d199bb55bb06f648089214"},
+  {250000, "2f32a2613721493d5a0f06020ee3e4e7270864cdaace3585521b7626be6da982"},
+  {270000, "ab566451ca48808779a74259b9a2598c006e050d70d655aca6a7fbf02d3f007d"},
+  {290000, "33793b9db3586539270d243466287f2bdbd87c9f285da47fee38e53e0f7bab86"},
+  {300000, "c92fa1020cb57ecd1191f79f7c1c046a84b33eb72350a3c424da19c88389de9c"},
+  {320000, "52cbf436e3ddc190fc7d25a47fd1d66c6768f6be3b72c26f4aa7d6cdd8b2abdb"},
+  {340000, "64c9e6afb820c260937e47090b55a1ca4cf2cb719d2b4619c1697d4ac2987594"},
+  {360000, "324edd6cceaa1e8e1f572d1b096c08161162b1235b3ec9d5d3115bffaab2dd98"},
+  {370100, "88ed50b79d6f2f786902f4cbde4e4ccda7b25df9388a2764408ff8b12471ccc1"},
   };
 
 } // CryptoNote
