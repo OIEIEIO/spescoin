@@ -160,47 +160,6 @@ file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/version")
 
 if (NOT COMMIT_ID_IN_VERSION)
     set(VERSION "${VERSION}-unknown")
-    set(COMMIT_ID "unknown")
-    message(STATUS "Version : ${VERSION}")
-    message(STATUS "Revision : ${COMMIT_ID}")
-    message(STATUS "Arch : ${ARCH}")
-    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.in" "${CMAKE_CURRENT_BINARY_DIR}/version/version.h")
-    add_custom_target(version ALL)
-elseif(DEFINED COMMIT_ID_IN_VERSION)
-    find_package(Git QUIET)
-    if(Git_FOUND OR GIT_FOUND)
-        message(STATUS "Found Git: ${GIT_EXECUTABLE}")
-        execute_process(
-            COMMAND git rev-parse --abbrev-ref HEAD  # Get the current branch
-            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-            OUTPUT_VARIABLE GIT_BRANCH
-            OUTPUT_STRIP_TRAILING_WHITESPACE
-            )
-
-        execute_process(
-            COMMAND git log -1 --format=%h # Get latest commit hash
-            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-            OUTPUT_VARIABLE COMMIT_ID
-            OUTPUT_STRIP_TRAILING_WHITESPACE
-            )
-    else()
-        message(STATUS "Git not found !")
-        set(GIT_BRANCH "unknown")
-        set(COMMIT_ID "unknown")
-    endif()
-    set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}")
-    message(STATUS "--------------------- SPEScoin Core build details ----------------------------")
-    message(STATUS "Build : ${CMAKE_BUILD_TYPE}")
-    message(STATUS "Compiler : ${CMAKE_C_COMPILER_ID} version ${CMAKE_CXX_COMPILER_VERSION}")
-    message(STATUS "Branch : ${GIT_BRANCH}")
-    message(STATUS "Version : ${VERSION}")
-    message(STATUS "Revision : ${COMMIT_ID}")
-    message(STATUS "Arch : ${ARCH}")
-    message(STATUS "Boost version : ${Boost_LIB_VERSION}")
-    message(STATUS "Link libraries statically : ${STATIC}" )
-    message(STATUS "Portable : ${PORTABLE}" )
-    message(STATUS "Compile tests : " ${BUILD_TESTS})
-    message(STATUS "----------------------------------------------------------")
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.in" "${CMAKE_CURRENT_BINARY_DIR}/version/version.h")
     add_custom_target(version ALL)
 endif()
