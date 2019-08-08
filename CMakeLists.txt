@@ -211,6 +211,4 @@ if(BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
-    © 2019 GitHub, Inc.
-    Terms
-    Privacy
+    
